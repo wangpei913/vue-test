@@ -1,0 +1,100 @@
+<template>
+    <div class="logintab-view">
+        <el-row :gutter="20" class="login-box">
+            <el-col>
+                系统登录
+            </el-col>
+            <el-col>
+                <el-row :gutter="24">
+                    <el-col :span="8" :xs="10">用户名:</el-col>
+                    <el-col :span="16" :xs="14"><el-input size="mini" v-model="ruleForm.name" /></el-col>
+                </el-row>
+            </el-col>
+            <el-col>
+                <el-row :gutter="24">
+                    <el-col :span="8">密码:</el-col>
+                    <el-col :span="16"><el-input size="mini" type="password" v-model="ruleForm.pass" /></el-col>
+                </el-row>
+            </el-col>
+            <el-col>&nbsp;</el-col>
+            <el-col>
+                <el-row :gutter="24">
+                    <el-col>
+                        <span class="login-span" @click="submitLogin">登录</span>
+                    </el-col>
+                </el-row>
+            </el-col>
+            <el-col>
+                <el-row :gutter="24">
+                    <el-col>
+                        <el-divider content-position="center">第三方登录</el-divider>
+                    </el-col>
+                    <el-col :span="8">
+                        <i class="iconfont iconxiangmulan-weixinhao"></i>
+                    </el-col>
+                    <el-col :span="8">
+                        <i class="iconfont iconQQ"></i>
+                    </el-col>
+                    <el-col :span="8">
+                        <i class="iconfont iconweibo"></i>
+                    </el-col>
+                </el-row>
+            </el-col>
+        </el-row>
+    </div>
+</template>
+<script>
+export default {
+    data() {
+        return {
+            ruleForm: {
+                pass: "",
+                name: ""
+            }
+        };
+    },
+    methods: {
+        submitLogin () {
+            const { pass, name } = this.ruleForm;
+            if (!pass || !name) {
+                this.$message({
+                    message: '用户名或者密码不能为空',
+                    type: 'warning'
+                });
+            } else {
+                this.$store.commit('login/setToken', name);
+                this.$router.push('/home')
+            }
+        }
+    }
+};
+</script>
+<style lang="less" scoped>
+.logintab-view {
+    flex: 1;
+    .login-box {
+        width: 80%;
+        min-height: 200px;
+        font-size: 12px;
+        border-radius: 10px;
+        background: #ffffff;
+        padding: 10px 20px;
+        .el-col{
+            line-height: 30px;
+            text-align: center;
+            margin-bottom: 5px;
+            .login-span{
+                display: block;
+                width: 50%;
+                margin: 0 auto;
+                border-radius: 5px;
+                background: skyblue;
+                cursor: pointer;
+            }
+            i{
+                font-size: 20px;
+            }
+        }
+    }
+}
+</style>

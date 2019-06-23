@@ -6,6 +6,7 @@ import './registerServiceWorker'
 import './plugins/element.js'
 import './utils/rem'
 import './style/main.less'
+import '@/style/iconfont/iconfont.css'
 
 Vue.config.productionTip = false
 

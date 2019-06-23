@@ -1,6 +1,6 @@
 <template>
   <div class="home-view">
-    <el-container class="container-parent" v-if="isFix === 'vertical'">
+    <!-- <el-container class="container-parent" v-if="isFix === 'vertical'">
       <el-header class="container-header">Header</el-header>
       <el-container>
         <el-aside width="200px">Aside</el-aside>
@@ -15,7 +15,8 @@
         <el-button @click="clickDirection('vertical')">改变方向</el-button>
       </el-main>
       <el-footer>Footer</el-footer>
-    </el-container>
+    </el-container> -->
+    home
   </div>
 </template>
 <script>
