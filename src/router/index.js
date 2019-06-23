@@ -18,7 +18,7 @@ const router = new Router({
         next()
     },
     afterEach: function () {
-        NProgress.done();
+        NProgress.done()
     }
 })
 
