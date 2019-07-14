@@ -6,7 +6,8 @@
       </el-header>
       <el-container>
         <el-aside width="200px">
-          <el-menu
+          <NavMenu />
+          <!-- <el-menu
             default-active="2"
             class="el-menu-vertical-demo"
             @open="handleOpen"
@@ -41,9 +42,11 @@
               <i class="el-icon-setting"></i>
               <span slot="title">导航四</span>
             </el-menu-item>
-          </el-menu>
+          </el-menu> -->
         </el-aside>
-        <el-main>1111</el-main>
+        <el-main>
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
     <!-- <el-container class="container-parent" v-else>
@@ -55,9 +58,11 @@
 </template>
 <script>
 import HeaderNav from "./HeaderNav";
+import NavMenu from '@/components/navMenu'
 export default {
   components: {
-    HeaderNav
+    HeaderNav,
+    NavMenu
   },
   data() {
     return {};
@@ -66,6 +71,9 @@ export default {
     isFix() {
       return this.$store.state.app.isFixed;
     }
+  },
+  mounted () {
+    console.log(this.$router)
   },
   methods: {
       handleOpen(key, keyPath) {

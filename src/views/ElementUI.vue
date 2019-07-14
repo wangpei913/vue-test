@@ -1,5 +1,5 @@
 <template>
-    <div class="element-views"></div>
+    <div class="element-views">elementUI</div>
 </template>
 <style lang="less" scoped>
 .element-views{

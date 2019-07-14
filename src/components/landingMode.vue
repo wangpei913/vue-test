@@ -19,8 +19,11 @@
             <el-col>&nbsp;</el-col>
             <el-col>
                 <el-row :gutter="24">
-                    <el-col>
+                    <el-col :span="20">
                         <span class="login-span" @click="submitLogin">登录</span>
+                    </el-col>
+                    <el-col :span="4">
+                        <span class="reg-span" @click="goRegister">注册</span>
                     </el-col>
                 </el-row>
             </el-col>
@@ -44,6 +47,7 @@
     </div>
 </template>
 <script>
+import { loginUser } from '@/api/index';
 export default {
     data() {
         return {
@@ -54,6 +58,9 @@ export default {
         };
     },
     methods: {
+        goRegister () {
+            this.$router.push('/register');
+        },
         submitLogin () {
             const { pass, name } = this.ruleForm;
             if (!pass || !name) {
@@ -62,8 +69,28 @@ export default {
                     type: 'warning'
                 });
             } else {
-                this.$store.commit('login/setToken', name);
-                this.$router.push('/home')
+                let params = {
+                    name: name,
+                    password: pass
+                }
+                loginUser(params).then(res => {
+                    const { data: {status, msg} } = res;
+                    if (status === 200) {
+                        this.$message({
+                            message: msg,
+                            type: 'success'
+                        });
+                        this.$store.commit('login/setToken', name);
+                        this.$router.push('/home')
+                    } else {
+                        this.$message({
+                            message: msg,
+                            type: 'error'
+                        });
+                    }
+                }).catch(err => {
+                    console.log(err)
+                })
             }
         }
     }
@@ -83,6 +110,11 @@ export default {
             line-height: 30px;
             text-align: center;
             margin-bottom: 5px;
+            .reg-span{
+                text-decoration: underline;
+                color: #409eff;
+                cursor: pointer;
+            }
             .login-span{
                 display: block;
                 width: 50%;

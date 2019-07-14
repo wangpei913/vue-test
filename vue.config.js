@@ -2,9 +2,29 @@
 const path = require('path')
 
 function resolve(dir) {
-  return path.join(__dirname, dir)
+    return path.join(__dirname, dir)
 }
+
 module.exports = {
+    devServer: {
+        port: '8080',
+        open: true,
+        overlay: {
+          warnings: false,
+          errors: true
+        },
+        proxy: {
+          // change xxx-api/login => mock/login
+          // detail: https://cli.vuejs.org/config/#devserver-proxy
+          '/api': {
+            target: `http://localhost:3000`,
+            changeOrigin: true,
+            pathRewrite: {
+              '^/api': ''
+            }
+          }
+        },
+      },
     configureWebpack: {
         resolve: {
             alias: {
