@@ -36,7 +36,7 @@ export default {
     },
     computed: {
         userName () {
-            return this.$store.state.login.isToken;
+            return this.$store.state.login.isToken.name;
         }
     },
     methods: {

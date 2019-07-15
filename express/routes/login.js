@@ -33,6 +33,11 @@ router.post('/', function (req, res) {
                if (response.user_name === params.name && response.pass_word === params.password) {
                    res.send({
                        status: 200,
+                       result: {
+                           name: response.user_name,
+                           type: response.customer_type,
+                           description: response.user_description
+                       },
                        msg: '登录成功'
                    })
                    res.end()

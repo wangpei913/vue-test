@@ -74,14 +74,14 @@ export default {
                     password: pass
                 }
                 loginUser(params).then(res => {
-                    const { data: {status, msg} } = res;
+                    const { data: {status, msg, result} } = res;
                     if (status === 200) {
                         this.$message({
                             message: msg,
                             type: 'success'
                         });
-                        this.$store.commit('login/setToken', name);
-                        this.$router.push('/home')
+                        this.$store.commit('login/setToken', result);
+                        this.$router.push('/dashboard');
                     } else {
                         this.$message({
                             message: msg,

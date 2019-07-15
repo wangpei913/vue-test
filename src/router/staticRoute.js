@@ -53,6 +53,16 @@ const staticRoute = [
             }
         ]
     },
+    {
+        path: '/setting',
+        component: Layout,
+        children: [
+            {
+                path: '',
+                component: () => import(/* webpackChunkName: 'home' */ '../views/Setting'),
+            }
+        ]
+    },
 ]
 
 export default staticRoute;

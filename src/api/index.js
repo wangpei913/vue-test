@@ -12,3 +12,9 @@ export function loginUser (params) {
         ...params
     });
 }
+// 用户菜单
+export function userMenu (params) {
+    return axios.post('/menu', {
+        ...params
+    });
+}

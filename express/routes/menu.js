@@ -13,17 +13,23 @@ var connection = mysql.createConnection({
 });
 //执行创建连接 
 connection.connect();
-//SQL语句
-const sql = 'select * from jrbac_menu';
-
 router.post('/', function (req, res) {
-    connection.query(sql, (err, rows, fields) => {
+    let params = req.body;
+    let sql = '';
+    if (params.id === '0') {
+        sql = 'select * from menu where auth = ?';
+    } else {
+        sql = 'select * from menu;';
+    }
+    connection.query(sql, params.id, (err, rows, fields) => {
         const allMenu = rows;
         const ret = [];
         const o = {};
         function add(arr, data) {
             var obj = {
                 "id": data.id,
+                "name": data.name,
+                "icon": data.icon,
                 "parent_id": data.parent_id,
                 "url": data.url,
                 "childer": []
