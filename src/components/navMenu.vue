@@ -13,12 +13,6 @@
     >
       <nav-bar-item v-for="(item, n) in menu" :item="item" :navIndex="String(n)" :key="n"></nav-bar-item>
     </el-menu>
-    <div
-      v-if="this.navMode == 'horizontal'"
-      v-show="navBgShow"
-      class="full-screen-navBg"
-      @click.self="closeAll"
-    ></div>
   </div>
 </template>
 <script>

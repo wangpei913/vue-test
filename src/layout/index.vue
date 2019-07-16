@@ -13,6 +13,14 @@
         </el-main>
       </el-container>
     </el-container>
+    <el-container v-else>
+      <el-header style="height: 40px; line-height: 40px;">
+        <HeaderNav />
+      </el-header>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
+    </el-container>
   </div>
 </template>
 <script>
@@ -31,17 +39,6 @@ export default {
       return this.$store.state.app.isFixed;
     }
   },
-  mounted () {
-    console.log(this.$router)
-  },
-  methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
-    }
 };
 </script>
 <style lang="less">

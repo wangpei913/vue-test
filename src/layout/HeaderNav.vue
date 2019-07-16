@@ -4,6 +4,9 @@
             <img class="logo-img" src="../assets/img/logo.jpg" alt="logo" srcset="">
             太智大数据平台
         </div>
+        <div class="menu-box">
+            <NavMenu v-if="isFix === 'horizontal'"></NavMenu>
+        </div>
         <div class="operation-box">
             <div class="search-box">
                 <!-- <p class="input-sapn">
@@ -25,9 +28,11 @@
 </template>
 <script>
 import ShrinkInput from '@/components/shrinkInput';
+import NavMenu from '@/components/navMenu'
 export default {
     components: {
-        ShrinkInput
+        ShrinkInput,
+        NavMenu
     },
     data () {
         return {
@@ -35,6 +40,9 @@ export default {
         }
     },
     computed: {
+        isFix() {
+            return this.$store.state.app.isFixed;
+        },
         userName () {
             return this.$store.state.login.isToken.name;
         }
@@ -56,12 +64,23 @@ export default {
 <style lang="less">
 .header-nav{
     height: 100%;
+    display: flex;
     .logo-box{
         float: left;
         .logo-img{
             float: left;
             max-width: 50px;
             min-height: 100%;
+        }
+    }
+    .menu-box{
+        flex: 1;
+        .el-menu.el-menu--horizontal{
+            height: 40px;
+            .el-menu-item{
+                height: 40px;
+                line-height: 40px;
+            }
         }
     }
     .operation-box{
